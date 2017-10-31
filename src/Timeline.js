@@ -1,5 +1,5 @@
 import {TimelineMax} from 'gsap';
-import Transition from '../Transitions/Transition';
+import Transition from './Transitions/Transition';
 
 export default class Timeline extends TimelineMax {
 

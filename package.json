@@ -2,10 +2,10 @@
   "name": "@adapt-retail/animation-framework",
   "version": "0.0.0",
   "description": "A framework for quickly and structured create HTML5 animations with both HTML elements and video.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "ava",
-    "tdd": "executor 'npm run test' --watch='**/*.js' --ignore='node_modules/'",
+    "tdd": "executor 'npm run build && npm run test' --watch='**/*.js' --ignore='node_modules/' --ignore='dist/'",
     "build": "babel src -d dist",
     "prepublish": "npm run build"
   },
@@ -19,6 +19,16 @@
     "@lassehaslev/executor": "^1.0.1",
     "ava": "^0.23.0",
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "browser-env": "^3.2.1"
+  },
+  "dependencies": {
+    "gsap": "^1.20.3",
+    "mustache": "^2.3.0"
+  },
+  "ava": {
+    "require": [
+      "./test/helpers/setup-browser-env.js"
+    ]
   }
 }

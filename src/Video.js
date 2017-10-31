@@ -1,4 +1,4 @@
-import Scene from '../Scenes/Scene';
+import Scene from './Scenes/Scene';
 export default class Video extends Scene {
 
     constructor( video, options = {} ) {

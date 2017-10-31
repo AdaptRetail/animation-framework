@@ -1,5 +1,5 @@
 import mustache from 'mustache';
-import Timeline from '../Classes/Timeline';
+import Timeline from '../Timeline';
 
 export default class Scene extends Timeline {
 
