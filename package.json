@@ -1,0 +1,15 @@
+{
+  "name": "@adapt-retail/animation-framework",
+  "version": "0.0.0",
+  "description": "A framework for quickly and structured create HTML5 animations with both HTML elements and video.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://AdaptRetail/animation-framwork"
+  },
+  "author": "Lasse S. Haslev <lasse@haslev.no>",
+  "license": "MIT"
+}
