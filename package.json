@@ -4,12 +4,21 @@
   "description": "A framework for quickly and structured create HTML5 animations with both HTML elements and video.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava",
+    "tdd": "executor 'npm run test' --watch='**/*.js' --ignore='node_modules/'",
+    "build": "babel src -d dist",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "https://AdaptRetail/animation-framwork"
   },
   "author": "Lasse S. Haslev <lasse@haslev.no>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@lassehaslev/executor": "^1.0.1",
+    "ava": "^0.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
 }
