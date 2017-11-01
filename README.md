@@ -50,6 +50,8 @@ const MyScene = require( './Path/To/MyScene' );
  * Create the main timeline.
  * We recommend you to add it to the window to access it from the console later
  * as timeline.
+ * 
+ * We all properties added to Timeline constructor will be added to TimelineMax
  */
 window.timeline = new Timeline();
 
@@ -98,14 +100,102 @@ GSAP.
 A result of this is that functions like `totalDuration()`
 on a timeline before it has started, will not work.
 
+You can overwrite this behaviour by adding following to constructor
+```js
+window.timeline = new Timeline({
+    paused: false,
+});
+```
+
 <a name="scene"></a>
 ### Scene
+
+In this framework you will use the most of your time in a Scene.
+The Scene is extending from Timeline that also inherits from TimelineMax.
+
+The Scene is only ment to be extended, and not used on its own.
+
+#### Example class
+```js
+import {Scene} from '@adapt-retail/animation-framework';
+
+class MyScene extends Scene {
+
+    constructor() {
+        super();
+        this.helloTo = 'world';
+    }
+
+    /**
+     * Return html string
+     *
+     * @return string
+     */
+    template() {
+        return `
+            <div>Hello <span class="hello-to">{{ helloTo }}</span>!</div>
+        `;
+    }
+
+    /**
+     * Animate the elemnts around.
+     * this.template references the first element in template function
+     *
+     * @return void
+     */
+    animate() {
+        this.from( this.template, 5, {
+            x: '100%',
+        } );
+
+        this.from( this.template.querySelector( '.hello-to' ), .8, {
+            opacity: 0,
+        }, 0 );
+    }
+
+}
+```
+
+#### Template
+
+```js
+render() {
+    return `
+        <div>
+            <h1 class="title">Hello {{ world }}</h1>
+            <p class="description">{{{ description }}}</p>
+        </div>
+    `
+}
+```
+
+> Note: A template can only have one root HTML element, if multiple is set we will use
+> the first one.
+
+The template function is where you will add your HTML for this Scene. We are
+using [mustache](https://github.com/janl/mustache.js) to render variables to the template.
+As a default you can access all `this.` variables through the template.
+
+##### Render to
+As a default we are rendering each Scene and element to the document.body.
+You can define what element you want to render your elements to like this:
+```js
+timeline.add( new Scene({
+    renderTo: document.querySelector( '.content' ),
+}) );
+```
+
+#### Animate
 
 #### Setup
 The setup command returns a promise. This is to make timeline wait to sew the
 full timeline together before each Scene, Transition and Timeline is done loading.
 
 You can read about [why here](#not-instant).
+
+
+- Before setup
+- After setup
 <a name="transition"></a>
 ### Transition
 ### Video

@@ -13,7 +13,6 @@ export default class Scene extends Timeline {
         // Set what data should be rendered to template
         this.templateData = this;
 
-
     }
 
     beforeSetup() {
@@ -37,7 +36,9 @@ export default class Scene extends Timeline {
     }
 
     /**
-     * Scene is where all the magic is happen
+     * Animate is where all the magic is happen
+     * Animate the elemnts around. this.template references the first element in
+     * template function
      *
      * @return void
      */
@@ -85,6 +86,12 @@ export default class Scene extends Timeline {
         this.renderTo.appendChild( this.template );
     }
 
+    /**
+     * Create a HTMLElement node from a data
+     * We use mustache to render variables to the html
+     *
+     * @return HTMLElement
+     */
     createHtmlNodeFromString( html, data = {} ) {
         let containerElement = document.createElement( 'div' );
         containerElement.insertAdjacentHTML( 'beforeEnd', mustache.render(

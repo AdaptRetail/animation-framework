@@ -8,6 +8,8 @@ export default class Timeline extends TimelineMax {
         /**
          * Pause all timelines before we start woring on it
          * This is to prevent it from shifting elements around before it starts
+         * 
+         * Fix this: Should be options.paused??
          */
         options.paused = options.options || true;
 
@@ -77,8 +79,6 @@ export default class Timeline extends TimelineMax {
             animationBefore.in = animation;
         }
 
-
-
     }
 
     /**
@@ -90,6 +90,11 @@ export default class Timeline extends TimelineMax {
         return object instanceof Transition;
     }
 
+    /**
+     * Add timeline to wait for
+     *
+     * @return void
+     */
     waitFor( timeline ) {
         this.promisesToWaitForBeforeStart.push(
             timeline.totalSetup ? timeline.totalSetup.call( timeline ) : Promise.resolve()
