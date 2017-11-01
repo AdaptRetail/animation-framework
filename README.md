@@ -83,7 +83,7 @@ timeline.from( element, 3, {
 } );
 ```
 
-<a href="not-instant"></a>
+<a name="not-instant"></a>
 #### The Timeline is not instant as TimelineMax
 One change we made to the Timeline is that it does not execute at once all the
 properties are added to it. This is to make it posible to wait for resources
