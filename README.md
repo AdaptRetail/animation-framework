@@ -17,7 +17,7 @@ npm install @adapt-retail/animation-framework
 
 ## Usage
 
-### [Get familiar with GSAP](https://greensock.com/gsap)
+### [Get familiar with GSAP animation framework](https://greensock.com/gsap)
 This project is built upon [greensock/GreenSock-JS](https://github.com/greensock/GreenSock-JS).
 We recommend you get familiar with [the basic of GSAP](https://greensock.com/jump-start-js/) to minimize whats new in this project. 
 
