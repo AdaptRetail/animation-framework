@@ -41,6 +41,12 @@ the timeline through eather a [Scene](#scene) or [Transition](#Transition).
 
 ```js
 /**
+ * Import Timeline
+ */
+const Timeline = require('@adapt-retail/animation-framework');
+// const { Timeline } = require('@adapt-retail/animation-framework'); // Also available
+
+/**
  * Import your scene, as we discuss in the Scene section
  */
 const MyIntroScene = require( './Path/To/MyIntroScene' );
