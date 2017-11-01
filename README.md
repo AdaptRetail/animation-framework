@@ -186,16 +186,65 @@ timeline.add( new Scene({
 ```
 
 #### Animate
+```js
+animate() {
+    /**
+     * Introduction movement for <h1 class="title"></h1> elemnt in template.
+     */
+    this.to( this.template.querySelector( '.title' ), 1, {
+        ease: SlowMo.ease.config(0.1, 2, true),
+        scale: 1.5,
+    } );
+
+    /**
+     * Show the description half a second before the title movement is done.
+     */
+    this.from( this.template.querySelector( '.description' ), .8, {
+        opacity: 0,
+    }, '-=.5' );
+}
+```
+
+The animate function is where you make all your elements move.
+The animate will run when everything is rendered to the page.
+
+As the scene is inheriting from TimelineMax, we are accessing the TimelineMax,
+from using the `this.` keyword. From there you can do [everything a
+TimelineMax](https://greensock.com/docs/TimelineMax) can do.
 
 #### Setup
+```js
+setup() {
+    return new Promise( function( resolve, reject ) {
+        window.setTimeout( function() {
+            resolve();
+        }, 500 );
+    } );
+}
+```
+
+If you need to setup something or wait for resources to load before running
+animation you can setup a `setup()` function in the class.
+
 The setup command returns a promise. This is to make timeline wait to sew the
-full timeline together before each Scene, Transition and Timeline is done loading.
+full timeline together before each Scene, Transition and Timeline is done loading before rendering and running animation.
 
 You can read about [why here](#not-instant).
 
+##### Before and after setup function hooks
 
-- Before setup
-- After setup
+None of the `beforeSetup()` or `afterSetup()` need to return anything.
+
+The `beforeSetup()` will run immediately before the `setup()` is executed.
+The `afterSetup()` will run immediately after the `setup()` is executed.
+
 <a name="transition"></a>
 ### Transition
 ### Video
+
+The video is under development, but can be reached by
+```js
+const {Video} = require( '@adapt-retail/animation-framework' );
+```
+
+See [Video.js](https://github.com/AdaptRetail/animation-framework/blob/master/src/Video.js) to see how it works.
