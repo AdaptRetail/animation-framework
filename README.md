@@ -87,6 +87,10 @@ One change we made to the Timeline is that it does not execute at once all the
 properties are added to it. This is to make it posible to wait for resources
 to load and alter the timeline length without the TimelineMax skipping it.
 
+Each parent timeline will wait for every child to notify when it is done. Then it
+will notify its parent that it is done. This process will bubble up until its
+main timeline, then it will add All into TimelineMax and run.
+
 An example of a resource it to wait for a video to load to get it length. 
 You cannot alter the timlines duration after it is added to another timeline in
 GSAP.
