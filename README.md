@@ -109,11 +109,14 @@ window.timeline = new Timeline({
 
 <a name="scene"></a>
 ### Scene
+> The Scene is only ment to be extended, and not used on its own.
 
 In this framework you will use the most of your time in a Scene.
 The Scene is extending from Timeline that also inherits from TimelineMax.
 
-The Scene is only ment to be extended, and not used on its own.
+You should think of each Scene as a Scene in a movie, or a section/module of
+your animation. Try make your Scenes solve one task. Also remember Scenes can
+add multiple sub Scenes. [See example here](https://github.com/AdaptRetail/video-template/blob/master/src/Scripts/Scenes/Products.js#L23-L36).
 
 #### Example class
 ```js
@@ -240,6 +243,76 @@ The `afterSetup()` will run immediately after the `setup()` is executed.
 
 <a name="transition"></a>
 ### Transition
+
+```js
+const { Transition } = require( '@adapt-retail/animation-framework' );
+
+timeline.add( new IntroScene );
+timeline.add( new Transition ); // <-- Transition between Scenes
+timeline.add( new ContentSectionScene );
+timeline.add( new Transition ); // <-- Transition between Scenes
+timeline.add( new OutroScene );
+```
+
+The transition is extending from [Scene](#scene) and therefor inherits from [Timeline](#timeline) and TimelineMax also.
+You should also extend the Transition or use it as it is. Do not run functions
+from it.
+
+Transitions are the glue between [Scenes](#scene), and you can look at as a
+special Scene that handle the transition between two Scenes.
+
+The framework notifies the Transitions about the Scene that should be animated
+in (`this.in`) and what Scene should be animated out (`this.out`).
+
+The [Core Transition class](https://github.com/AdaptRetail/animation-framework/blob/master/src/Transitions/Transition.js)
+is probably the best code reference about how to create a new version of it.
+But here is an example:
+
+```js
+import {Transition} from '@adapt-retail/animation-framework';
+
+export default class SlideInOut extends Transition {
+
+    /**
+     * Animate the transition between two elements
+     * The this.to and this.from is automaticly set in the Timlineline
+     *
+     * this.to represents the element we are animating in
+     * this.from represents the element we are animating out
+     *
+     * @return void
+     */
+    animate() {
+
+        // Animate the element out
+        if (this.out) {
+            this.to( this.out.template, this.transitionTime, { 
+                x: '100%',
+            });
+        }
+
+        // Animate the element in
+        if (this.in) {
+            this.to( this.in.template, this.transitionTime, {
+                x: '-100%',
+            }, 0 );
+        }
+
+    }
+
+}
+```
+
+When your class is created you can use it like so:
+```js
+const SlideInOut = require( './path/to/SlideInOut' );
+
+timeline.add( new FirstScene );
+timeline.add( new SlideInOut ); // <-- Slides scenes from left to right
+timeline.add( new SecondScene );
+```
+
+
 ### Video
 
 The video is under development, but can be reached by
