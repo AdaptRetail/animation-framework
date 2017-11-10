@@ -1,12 +1,35 @@
 # @adapt-retail/animation-framework
-> A framework for quickly and structured create HTML5 animations with both HTML elements and video.
+> A framework for quickly and structured create linear HTML5 animations with both HTML elements and video.
+
+## Table of content
+- [Introduction](#introduction)
+- [Install](#install)
+- [Usage](#usage)
+    - [See it in action](#see-it-in-action)
+- [API](#api)
+    - [Timeline](#timeline)
+        - [The Timeline is not instant as TimelineMax](#not-instant)
+    - [Scene](#scene)
+        - [Example class](#scene-example-class)
+        - [Template](#template)
+            - [Render to](#render-to)
+        - [Animate](#animate)
+        - [Setup](#setup)
+            - [Before and after setup function hooks](#before-after-setup-hooks)
+    - [Transition](#transition)
+    - [Video](#video)
+- [License](#license)
+
+<a href="introduction"></a>
+## Introduction
 
 The core concept of this animation framework is to help you create fast,
-structured and logical animations. We do this by helping you create
-sections/modules of your code, and then sowing it together on a higher level.
+structured and logical animations using the [GSAP animation framework](https://greensock.com/gsap).
+We do this by helping you create sections/modules of your code, and then sowing it together on a higher level.
 
 These modules are [Timeline](#timeline), [Scene](#scene) and [Transition](#transition).
 
+<a href="install"></a>
 ## Install
 
 In your project folder run following code.
@@ -15,6 +38,7 @@ In your project folder run following code.
 npm install @adapt-retail/animation-framework
 ```
 
+<a href="usage"></a>
 ## Usage
 
 ### [Get familiar with GSAP animation framework](https://greensock.com/gsap)
@@ -23,10 +47,12 @@ We recommend you get familiar with [the basic of GSAP](https://greensock.com/jum
 
 GreenSock GSAP is a animation standard for web, and we recommend you to read [Get started guide](https://greensock.com/get-started-js) to use GreenSock/GSAP in other projects to.
 
-### See it in use
+<a href="see-it-in-action"></a>
+### See it in action
 This project is already used as a dependency in the
 [AdaptRetail/video-template](https://github.com/AdaptRetail/video-template).
 
+<a href="api"></a>
 ## API
 
 <a name="timeline"></a>
@@ -124,6 +150,7 @@ You should think of each Scene as a Scene in a movie, or a section/module of
 your animation. Try make your Scenes solve one task. Also remember Scenes can
 add multiple sub Scenes. [See example here](https://github.com/AdaptRetail/video-template/blob/master/src/Scripts/Scenes/Products.js#L23-L36).
 
+<a href="scene-example-class"></a>
 #### Example class
 ```js
 import {Scene} from '@adapt-retail/animation-framework';
@@ -165,6 +192,7 @@ class MyScene extends Scene {
 }
 ```
 
+<a href="template"></a>
 #### Template
 
 ```js
@@ -185,6 +213,7 @@ The template function is where you will add your HTML for this Scene. We are
 using [mustache](https://github.com/janl/mustache.js) to render variables to the template.
 As a default you can access all `this.` variables through the template.
 
+<a href="render-to"></a>
 ##### Render to
 As a default we are rendering each Scene and element to the document.body.
 You can define what element you want to render your elements to like this:
@@ -194,6 +223,7 @@ timeline.add( new Scene({
 }) );
 ```
 
+<a href="animate"></a>
 #### Animate
 ```js
 animate() {
@@ -221,6 +251,7 @@ As the scene is inheriting from TimelineMax, we are accessing the TimelineMax,
 from using the `this.` keyword. From there you can do [everything a
 TimelineMax](https://greensock.com/docs/TimelineMax) can do.
 
+<a href="setup"></a>
 #### Setup
 ```js
 setup() {
@@ -240,6 +271,7 @@ full timeline together before each Scene, Transition and Timeline is done loadin
 
 You can read about [why here](#not-instant).
 
+<a href="before-after-setup-hooks"></a>
 ##### Before and after setup function hooks
 
 None of the `beforeSetup()` or `afterSetup()` need to return anything.
@@ -319,6 +351,7 @@ timeline.add( new SecondScene );
 ```
 
 
+<a href="video"></a>
 ### Video
 
 The video is under development, but can be reached by
@@ -327,3 +360,11 @@ const {Video} = require( '@adapt-retail/animation-framework' );
 ```
 
 See [Video.js](https://github.com/AdaptRetail/animation-framework/blob/master/src/Video.js) to see how it works.
+
+<a name="license"></a>
+## License
+
+The code provided in this template is MIT Licensed,
+but it rely on external packages that may not.
+
+Read the documentation for [@adapt-retail/animation-framework](https://github.com/AdaptRetail/animation-framework#license).
