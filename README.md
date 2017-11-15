@@ -58,12 +58,12 @@ This project is already used as a dependency in the
 <a name="timeline"></a>
 ### Timeline
 
-Timline is the core class of this package. At this point every other class uses Timeline.
+Timeline is the core class of this package. At this point every other class uses Timeline.
 The Timeline class is extending from [GSAP/TimelineMax](https://greensock.com/timelinemax).
 
-Most of the time you will only use the timelineclass as the main timeline for
+Most of the time you will only use the Timeline class as the main timeline for
 all other classes that inherits from the timeline class. Often you will find yourself using 
-the timeline through eather a [Scene](#scene) or [Transition](#Transition).
+the timeline through either a [Scene](#scene) or [Transition](#Transition).
 
 ```js
 /**
@@ -118,7 +118,7 @@ timeline.from( element, 3, {
 <a name="not-instant"></a>
 #### The Timeline is not instant as TimelineMax
 One change we made to the Timeline is that it does not execute at once all the
-properties are added to it. This is to make it posible to wait for resources
+properties are added to it. This is to make it possible to wait for resources
 to load and alter the timeline length without the TimelineMax skipping it.
 
 Each parent timeline will wait for every child to notify when it is done. Then it
@@ -126,7 +126,7 @@ will notify its parent that it is done. This process will bubble up until its
 main timeline, then it will add All into TimelineMax and run.
 
 An example of a resource it to wait for a video to load to get it length. 
-You cannot alter the timlines duration after it is added to another timeline in
+You cannot alter the timelines duration after it is added to another timeline in
 GSAP.
 
 A result of this is that functions like `totalDuration()`
@@ -141,7 +141,7 @@ window.timeline = new Timeline({
 
 <a name="scene"></a>
 ### Scene
-> The Scene is only ment to be extended, and not used on its own.
+> The Scene is only meant to be extended, and not used on its own.
 
 In this framework you will use the most of your time in a Scene.
 The Scene is extending from Timeline that also inherits from TimelineMax.
@@ -364,8 +364,7 @@ See [Video.js](https://github.com/AdaptRetail/animation-framework/blob/master/sr
 <a name="license"></a>
 ## License
 
-The code provided in this framework is MIT Licensed,
-but it rely on external packages that may not.
-
 This framework is built using the [GSAP animation framework](https://greensock.com/gsap), and they are subject to [their own license](http://greensock.com/standard-license).
 Read their license to make sure you are on the safe side on how you use this framework.
+
+The code provided in this framework is available for usage by all clients of [Adapt Retail](https://adaptretail.com).
